@@ -101,7 +101,7 @@ function onImgClick(e) {
   console.log(e.target);
   if (e.target.classList.contains('gallery__image')) {
     js_backdrop.classList.add('is-open');
-    console.log(current.getAttribute('index'));
+    // console.log(current.getAttribute('index'));
     const currentImg = document.querySelector('.lightbox__image');
     currentImg.src = current.getAttribute('data-source');
 
@@ -119,8 +119,11 @@ modalRef.addEventListener('click', onModalClick);
 function onModalClick(e) {
      if (e.target.classList.contains('lightbox__button') || e.target.classList.contains('lightbox__overlay'))
      {
-        window.removeEventListener('keydown', onCloseModal);
-    js_backdrop.classList.remove('is-open');
+       const currentImg = document.querySelector('.lightbox__image');
+       currentImg.src = '';
+       window.removeEventListener('keydown', onCloseModal);
+       js_backdrop.classList.remove('is-open');
+      console.log(currentImg);
   };
   
 }
@@ -128,6 +131,8 @@ function onModalClick(e) {
 function onCloseModal(e){
   console.log(e);
   if (e.key === 'Escape') {
+    const currentImg = document.querySelector('.lightbox__image');
+       currentImg.src = '';
     js_backdrop.classList.remove('is-open');
      window.removeEventListener('keydown', onCloseModal);
   }
