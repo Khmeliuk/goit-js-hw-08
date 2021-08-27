@@ -100,7 +100,6 @@ function onImgClick(e) {
   console.log(e.target);
   if (e.target.classList.contains('gallery__image')) {
     js_backdrop.classList.add('is-open');
-      
     currentImgRef.src = current.getAttribute('data-source');
 
     window.addEventListener('keydown', onCloseModal);
@@ -115,18 +114,20 @@ modalRef.addEventListener('click', onModalClick);
 function onModalClick(e) {
      if (e.target.classList.contains('lightbox__button') || e.target.classList.contains('lightbox__overlay'))
      {
-       currentImgRef.src = '';
-       window.removeEventListener('keydown', onCloseModal);
-       js_backdrop.classList.remove('is-open');
-      console.log(currentImgRef);
+       onCloseAndVipeModal();
+     
   };
 }
   
 function onCloseModal(e){
   console.log(e);
   if (e.key === 'Escape') {
-    currentImgRef.src = '';
-    js_backdrop.classList.remove('is-open');
-    window.removeEventListener('keydown', onCloseModal);
+    onCloseAndVipeModal();
   }
 }
+
+function onCloseAndVipeModal(){
+       currentImgRef.src = '';
+       window.removeEventListener('keydown', onCloseModal);
+       js_backdrop.classList.remove('is-open');
+ }
