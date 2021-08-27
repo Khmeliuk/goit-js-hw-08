@@ -63,10 +63,10 @@ const galleryItems = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-
+const modalRef = document.querySelector('.js-lightbox');
 const js_gallery = document.querySelector('.js-gallery');
 const js_backdrop = document.querySelector('.lightbox');
-
+const currentImgRef = document.querySelector('.lightbox__image');
 
 let gallary = [];
 gallary = galleryItems.map((item,index) => {
@@ -89,7 +89,6 @@ gallary = galleryItems.map((item,index) => {
   liItem.classList.add('gallery__item');
   return liItem;
 });
-console.log(gallary);
 
 js_gallery.append(...gallary);
 
@@ -101,9 +100,8 @@ function onImgClick(e) {
   console.log(e.target);
   if (e.target.classList.contains('gallery__image')) {
     js_backdrop.classList.add('is-open');
-    // console.log(current.getAttribute('index'));
-    const currentImg = document.querySelector('.lightbox__image');
-    currentImg.src = current.getAttribute('data-source');
+      
+    currentImgRef.src = current.getAttribute('data-source');
 
     window.addEventListener('keydown', onCloseModal);
   }
@@ -111,29 +109,24 @@ function onImgClick(e) {
 
 }
 
-const modalRef = document.querySelector('.js-lightbox');
-console.log(modalRef);
 
 modalRef.addEventListener('click', onModalClick);
 
 function onModalClick(e) {
      if (e.target.classList.contains('lightbox__button') || e.target.classList.contains('lightbox__overlay'))
      {
-       const currentImg = document.querySelector('.lightbox__image');
-       currentImg.src = '';
+       currentImgRef.src = '';
        window.removeEventListener('keydown', onCloseModal);
        js_backdrop.classList.remove('is-open');
-      console.log(currentImg);
+      console.log(currentImgRef);
   };
-  
 }
   
 function onCloseModal(e){
   console.log(e);
   if (e.key === 'Escape') {
-    const currentImg = document.querySelector('.lightbox__image');
-       currentImg.src = '';
+    currentImgRef.src = '';
     js_backdrop.classList.remove('is-open');
-     window.removeEventListener('keydown', onCloseModal);
+    window.removeEventListener('keydown', onCloseModal);
   }
 }
