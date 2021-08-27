@@ -105,8 +105,7 @@ function onImgClick(e) {
     window.addEventListener('keydown', onCloseModal);
   }
   else return;
-
-}
+ }
 
 
 modalRef.addEventListener('click', onModalClick);
@@ -115,8 +114,7 @@ function onModalClick(e) {
      if (e.target.classList.contains('lightbox__button') || e.target.classList.contains('lightbox__overlay'))
      {
        onCloseAndVipeModal();
-     
-  };
+    };
 }
   
 function onCloseModal(e){
