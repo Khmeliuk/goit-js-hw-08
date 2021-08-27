@@ -98,13 +98,17 @@ js_gallery.addEventListener('click', onImgClick);
 function onImgClick(e) {
   e.preventDefault();
   const current = e.target;
+  console.log(e.target);
+  if (e.target.classList.contains('gallery__image')) {
+    js_backdrop.classList.add('is-open');
+    console.log(current.getAttribute('index'));
+    const currentImg = document.querySelector('.lightbox__image');
+    currentImg.src = current.getAttribute('data-source');
 
-  js_backdrop.classList.add('is-open');
-  console.log(current.getAttribute('index'));
-  const currentImg = document.querySelector('.lightbox__image');
-  currentImg.src = current.getAttribute('data-source');
+    window.addEventListener('keydown', onCloseModal);
+  }
+  else return;
 
-  window.addEventListener('keydown', onCloseModal);
 }
 
 const modalRef = document.querySelector('.js-lightbox');
