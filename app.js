@@ -113,18 +113,18 @@ modalRef.addEventListener('click', onModalClick);
 function onModalClick(e) {
      if (e.target.classList.contains('lightbox__button') || e.target.classList.contains('lightbox__overlay'))
      {
-       onCloseAndVipeModal();
+       closeAndVipeModal();
     };
 }
   
 function onCloseModal(e){
   console.log(e);
   if (e.key === 'Escape') {
-    onCloseAndVipeModal();
+    closeAndVipeModal();
   }
 }
 
-function onCloseAndVipeModal(){
+function closeAndVipeModal(){
        currentImgRef.src = '';
        window.removeEventListener('keydown', onCloseModal);
        js_backdrop.classList.remove('is-open');
